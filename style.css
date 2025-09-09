@@ -1,0 +1,37 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #fff0f5; /* Lavender blush, very soft */
+  font-family: 'Arial', sans-serif;
+}
+
+#matrixCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.center-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  font-weight: bold;
+  color: #c71585; /* Medium violet red (softer but still stands out) */
+  text-align: center;
+  padding: 1rem;
+  background: rgba(255, 240, 245, 0.7); /* translucent soft blush */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(199, 21, 133, 0.25);
+}
+@media (max-width: 600px) {
+  .center-text {
+    font-size: 1.5rem;
+    padding: 0.75rem;
+  }
+}
