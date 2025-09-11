@@ -5,7 +5,7 @@ canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
 
 // Falling characters
-const letters = "♡❀✿❣☁︎❃❦".split("");
+const letters = "♡🍦❀✿🍦❣☁︎❃❦🍦🍦".split("");
 const fontSize = 16;
 const columns = canvas.width / fontSize;
 const drops = Array.from({ length: columns }).map(() => 1);
@@ -96,3 +96,4 @@ window.addEventListener("resize", () => {
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
 });
+
