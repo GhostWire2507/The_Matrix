@@ -41,6 +41,26 @@ const messages = [
 
 let currentPalette = 0;
 
+// 🔄 Message pool to avoid repeats
+let messagePool = [...messages];
+
+// Fisher-Yates shuffle
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+// Get next unique message
+function getNextMessage() {
+  if (messagePool.length === 0) {
+    messagePool = shuffleArray([...messages]); // reshuffle once all used
+  }
+  return messagePool.pop();
+}
+
 // Draw function
 function draw() {
   ctx.fillStyle = "rgba(255, 240, 245, 0.2)";
@@ -75,8 +95,8 @@ document.getElementById("refreshBtn").addEventListener("click", () => {
   affirmation.classList.add("fade-out");
 
   setTimeout(() => {
-    // Change message after fade-out
-    const newMsg = messages[Math.floor(Math.random() * messages.length)];
+    // ✅ Use non-repeating message cycle
+    const newMsg = getNextMessage();
     affirmation.innerText = newMsg;
 
     // Change color palette
@@ -88,13 +108,12 @@ document.getElementById("refreshBtn").addEventListener("click", () => {
   }, 1000); // matches transition duration
 });
 
-// Set initial background
+// Set initial background + first message
 document.body.style.backgroundColor = palettes[currentPalette].bg;
+document.getElementById("affirmation").innerText = getNextMessage();
 
 // Handle resizing
 window.addEventListener("resize", () => {
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
 });
-
-
