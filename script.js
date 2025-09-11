@@ -32,11 +32,11 @@ const palettes = [
 
 // Messages
 const messages = [
-  "it's going to be okay, it's just the weather 🌸",
-  "breathe in, breathe out — you’ve got this 💕",
-  "sometimes clouds pass, but the sun always returns ☀️",
-  "rest, hydrate, and be gentle with yourself ✨",
-  "it’s not you, it’s the weather — promise 💖",
+  "it's going to be okay, it's just the weather, since you know...spring and allergies",
+  "Just breathe okay — you’ve got this 🍦",
+  "Sometimes it's cloudy and sometimes its windy, but other times....other times",
+  "Rest, hydrate, and be gentle with yourself. It's just one of those days ✨",
+  "it’s not you, it’s the weather — have something sweet and it'll be better",
 ];
 
 let currentPalette = 0;
@@ -96,4 +96,5 @@ window.addEventListener("resize", () => {
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
 });
+
 
