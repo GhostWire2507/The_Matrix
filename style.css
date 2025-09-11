@@ -3,8 +3,10 @@ body, html {
   padding: 0;
   height: 100%;
   overflow: hidden;
-  background: #fff0f5; /* Lavender blush, very soft */
   font-family: 'Arial', sans-serif;
+
+  /* Smooth background fade */
+  transition: background-color 1.5s ease;
 }
 
 #matrixCanvas {
@@ -15,23 +17,60 @@ body, html {
   height: 100%;
 }
 
-.center-text {
+.center-container {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
+  max-width: 90%;
+}
+
+.center-text {
   font-size: 2rem;
   font-weight: bold;
-  color: #c71585; /* Medium violet red (softer but still stands out) */
-  text-align: center;
+  color: #c71585;
+  background: rgba(255, 240, 245, 0.7);
   padding: 1rem;
-  background: rgba(255, 240, 245, 0.7); /* translucent soft blush */
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(199, 21, 133, 0.25);
+  margin-bottom: 1rem;
+
+  /* Fade animation */
+  opacity: 1;
+  transition: opacity 1s ease;
 }
+
+.fade-out {
+  opacity: 0;
+}
+
+#refreshBtn {
+  font-size: 1rem;
+  padding: 0.7rem 1.2rem;
+  border: none;
+  border-radius: 10px;
+  background: #ffcce7;
+  color: #6a1b4d;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(106, 27, 77, 0.25);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#refreshBtn:hover {
+  background: #ffb6c1;
+  transform: scale(1.05);
+}
+
+/* 🌸 Mobile adjustments */
 @media (max-width: 600px) {
   .center-text {
-    font-size: 1.5rem;
-    padding: 0.75rem;
+    font-size: 1.3rem;
+    padding: 0.8rem;
+  }
+
+  #refreshBtn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
   }
 }
