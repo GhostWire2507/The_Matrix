@@ -34,9 +34,18 @@ const palettes = [
 const messages = [
   "it's going to be okay, it's just the weather, since you know...spring and allergies",
   "Just breathe okay — you’ve got this 🍦",
-  "Sometimes it's cloudy and sometimes its windy, but other times....other times",
+  "Sometimes it's cloudy and sometimes its windy, but other times....other time, other times it's the best day",
   "Rest, hydrate, and be gentle with yourself. It's just one of those days ✨",
   "it’s not you, it’s the weather — have something sweet and it'll be better",
+  "Even when you feel alone you're not, hack you know my number by heart",
+  "FIGHTIIING! 🫰🏼",
+  "Smell the roses, I mean they worked so hard to smell like you, so take the time",
+  " 1+1 isn't always two, sometimes it's a group of friends that make you laugh even when you're sad",
+  "Correlation is when two things happens together, Causality is when one causes the other. Learn that, it's important",
+  "Sometimes we cry and think that makes us weak, take it from me, not crying it the real weakness",
+  "You're beautiful, smokin' hot, fyn shyt and you have a nice butt, look in the mirror, twice in fact and you'll see",
+  "Life is boring, do the thing, have fun, be excited. You'll explain later",
+  
 ];
 
 let currentPalette = 0;
@@ -117,3 +126,4 @@ window.addEventListener("resize", () => {
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
 });
+
