@@ -5,7 +5,7 @@ canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
 
 // Falling characters
-const letters = "♡🍦❀✿🍦❣☁︎❃❦🍦🍦".split("");
+const letters = "♡🍦❀✿🍦❣☁︎❃❦🍦🧁".split(""); // added cupcake 🧁
 const fontSize = 16;
 const columns = canvas.width / fontSize;
 const drops = Array.from({ length: columns }).map(() => 1);
@@ -40,12 +40,11 @@ const messages = [
   "Even when you feel alone you're not, hack you know my number by heart",
   "FIGHTIIING! 🫰🏼",
   "Smell the roses, I mean they worked so hard to smell like you, so take the time",
-  " 1+1 isn't always two, sometimes it's a group of friends that make you laugh even when you're sad",
+  "1+1 isn't always two, sometimes it's a group of friends that make you laugh even when you're sad",
   "Correlation is when two things happens together, Causality is when one causes the other. Learn that, it's important",
   "Sometimes we cry and think that makes us weak, take it from me, not crying it the real weakness",
   "You're beautiful, smokin' hot, fyn shyt and you have a nice butt, look in the mirror, twice in fact and you'll see",
   "Life is boring, do the thing, have fun, be excited. You'll explain later",
-  
 ];
 
 let currentPalette = 0;
@@ -96,6 +95,10 @@ function draw() {
 
 setInterval(draw, 70);
 
+// 🎵 Background music setup
+const bgMusic = document.getElementById("bgMusic");
+let musicStarted = false; // prevent multiple restarts
+
 // Button functionality
 document.getElementById("refreshBtn").addEventListener("click", () => {
   const affirmation = document.getElementById("affirmation");
@@ -114,6 +117,16 @@ document.getElementById("refreshBtn").addEventListener("click", () => {
 
     // Fade back in
     affirmation.classList.remove("fade-out");
+
+    // 🎵 Start music only on first refresh
+    if (!musicStarted) {
+      bgMusic.currentTime = 37; // start from 37s
+      bgMusic.volume = 0.2;     // soft volume
+      bgMusic.play().catch(err => {
+        console.log("Music play blocked until user interacts:", err);
+      });
+      musicStarted = true;
+    }
   }, 1000); // matches transition duration
 });
 
@@ -126,4 +139,3 @@ window.addEventListener("resize", () => {
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
 });
-
