@@ -37,7 +37,7 @@ const messages = [
   "Sometimes it's cloudy and sometimes its windy, but other times....other time, other times it's the best day",
   "Rest, hydrate, and be gentle with yourself. It's just one of those days ✨",
   "it’s not you, it’s the weather — have something sweet and it'll be better",
-  "Even when you feel alone you're not, hack you know my number by heart",
+  "Even when you feel alone you're not, heck you know my number by heart",
   "FIGHTIIING! 🫰🏼",
   "Smell the roses, I mean they worked so hard to smell like you, so take the time",
   "1+1 isn't always two, sometimes it's a group of friends that make you laugh even when you're sad",
@@ -139,3 +139,4 @@ window.addEventListener("resize", () => {
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
 });
+
