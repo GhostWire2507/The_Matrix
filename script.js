@@ -42,7 +42,7 @@ const messages = [
   "Smell the roses, I mean they worked so hard to smell like you, to look like you, so take the time",
   "1+1 isn't always two, sometimes it's a group of friends that make you laugh even when you're sad",
   "Correlation is when two things happens together, Causality is when one causes the other. Learn that, it's important",
-  "Sometimes we cry and think that makes us weak, take it from me, not crying it the real weakness",
+  "Sometimes we cry and think that makes us weak, take it from me, not crying is the real weakness",
   "You're beautiful, smokin' hot, fyn shyt and you have a nice butt, look in the mirror, twice in fact and you'll see",
   "Life is boring, do the thing, have fun, be excited. You'll explain later",
   "I know it sucks right now. I know it's a bit of a mess but you're doing great okay, so get up",
@@ -142,6 +142,7 @@ window.addEventListener("resize", () => {
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
 });
+
 
 
 
