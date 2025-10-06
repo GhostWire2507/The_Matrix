@@ -4,8 +4,6 @@ body, html {
   height: 100%;
   overflow: hidden;
   font-family: 'Arial', sans-serif;
-
-  /* Smooth background fade */
   transition: background-color 1.5s ease;
 }
 
@@ -17,6 +15,41 @@ body, html {
   height: 100%;
 }
 
+/* Mood Selection Page */
+.mood-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #c71585;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.mood-btn {
+  display: block;
+  margin: 0.7rem auto;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  background-color: #ffcce7;
+  color: #6a1b4d;
+  box-shadow: 0 3px 8px rgba(106, 27, 77, 0.25);
+  transition: transform 0.2s, background 0.3s;
+}
+
+.mood-btn:hover {
+  transform: scale(1.05);
+  background: #ffb6c1;
+}
+
+/* Main Container */
 .center-container {
   position: absolute;
   top: 50%;
@@ -35,8 +68,6 @@ body, html {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(199, 21, 133, 0.25);
   margin-bottom: 1rem;
-
-  /* Fade animation */
   opacity: 1;
   transition: opacity 1s ease;
 }
@@ -62,15 +93,16 @@ body, html {
   transform: scale(1.05);
 }
 
-/* 🌸 Mobile adjustments */
+.hidden {
+  display: none;
+}
+
 @media (max-width: 600px) {
   .center-text {
     font-size: 1.3rem;
-    padding: 0.8rem;
   }
 
-  #refreshBtn {
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
+  .mood-btn {
+    width: 80%;
   }
 }
