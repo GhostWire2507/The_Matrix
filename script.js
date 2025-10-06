@@ -47,6 +47,8 @@ const messages = [
   "Life is boring, do the thing, have fun, be excited. You'll explain later",
   "I know it sucks right now. I know it's a bit of a mess but you're doing great okay, so get up",
   "The worst decision you can make is not being you. You're to pretty and too amazing hide her, everything else can be explained",
+  "I love the way you love. It's beautiful like you",
+  "I miss you...",
 ]
 
   
@@ -142,6 +144,7 @@ window.addEventListener("resize", () => {
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
 });
+
 
 
 
