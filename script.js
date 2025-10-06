@@ -45,8 +45,11 @@ const messages = [
   "Sometimes we cry and think that makes us weak, take it from me, not crying it the real weakness",
   "You're beautiful, smokin' hot, fyn shyt and you have a nice butt, look in the mirror, twice in fact and you'll see",
   "Life is boring, do the thing, have fun, be excited. You'll explain later",
-];
+  "I know it sucks right now. I know it's a bit of a mess but you're doing great okay, so get up",
+  "The worst decision you can make is not being you. You're to pretty and too amazing hide her, everything else can be explained",
+]
 
+  
 let currentPalette = 0;
 
 // 🔄 Message pool to avoid repeats
@@ -139,5 +142,6 @@ window.addEventListener("resize", () => {
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
 });
+
 
 
