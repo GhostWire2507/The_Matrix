@@ -1,40 +1,126 @@
 const canvas = document.getElementById("matrixCanvas");
 const ctx = canvas.getContext("2d");
+const affirmation = document.getElementById("affirmation");
+const mainContainer = document.getElementById("mainContainer");
+const moodContainer = document.getElementById("moodContainer");
+const refreshBtn = document.getElementById("refreshBtn");
+const bgMusic = document.getElementById("bgMusic");
 
 canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
 
-// Falling characters
-const letters = "♡🍦❀✿🍦❣☁︎❃❦🍦🧁".split(""); // added cupcake 🧁
+// 🧁 Cupcake matrix
+const letters = "♡🍦❀✿❣☁︎❃❦🧁".split("");
 const fontSize = 16;
 const columns = canvas.width / fontSize;
 const drops = Array.from({ length: columns }).map(() => 1);
 
-// Palettes of pink shades + matching background
-const palettes = [
-  {
-    bg: "#fff0f5", // Lavender blush
-    colors: ["#ffb6c1", "#ffc0cb", "#ffd6e7", "#ffe4ec"],
-  },
-  {
-    bg: "#fde4ec", // Very light rose
-    colors: ["#f8bbd0", "#f48fb1", "#f06292", "#ec407a"],
-  },
-  {
-    bg: "#fff5f7", // Soft baby pink
-    colors: ["#ffe0f0", "#ffccdd", "#ffb3c6", "#ff99bb"],
-  },
-  {
-    bg: "#fef0f7", // Light blossom pink
-    colors: ["#fddde6", "#fbcce7", "#f8b6dc", "#f699cd"],
-  },
-];
+const palettes = {
+  sad: { bg: "#fff0f5", colors: ["#ffb6c1", "#ffc0cb", "#ffd6e7", "#ffe4ec"] },
+  overwhelmed: { bg: "#fde4ec", colors: ["#f8bbd0", "#f48fb1", "#f06292", "#ec407a"] },
+  confidence: { bg: "#fff5f7", colors: ["#ffe0f0", "#ffccdd", "#ffb3c6", "#ff99bb"] },
+};
 
-// Messages
-const messages = [
-  "it's going to be okay, it's just the weather, since you know...spring and allergies",
-  "Just breathe okay — you’ve got this 🧁",
-  "Sometimes it's cloudy and sometimes it's windy, but other times....other time, other times it's the best day",
+// 🩷 Mood-based affirmations
+const moodMessages = {
+  sad: [
+    "It's okay to cry, it's how your soul breathes 🌧️",
+    "You don’t have to fix everything right now. Just rest.",
+    "Sometimes, soft moments heal the loudest hurts 🍦",
+    "Even storms end. You’ll see the sun again soon 🌤️",
+  ],
+  overwhelmed: [
+    "Breathe. You are doing enough. You *are* enough. 🌪️",
+    "Take one step. That’s all progress needs right now.",
+    "You’re not behind — you’re just taking a detour to peace 🌸",
+    "Pause, sip some water, stretch — small calm moments matter 💧",
+  ],
+  confidence: [
+    "Look at you — existing beautifully and trying again 💖",
+    "You're not less. You're the blueprint ✨",
+    "Your energy? Unmatchable. Your worth? Non-negotiable 🔥",
+    "Don’t shrink. The world needs the version of you that glows 🌟",
+  ]
+};
+
+let currentMood = null;
+let currentPalette = null;
+let messagePool = [];
+
+// 🎵 Play song once at first refresh
+let musicPlayed = false;
+
+// Matrix animation
+function draw() {
+  if (!currentPalette) return;
+  ctx.fillStyle = "rgba(255, 240, 245, 0.2)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  const colors = currentPalette.colors;
+  ctx.font = fontSize + "px monospace";
+
+  for (let i = 0; i < drops.length; i++) {
+    const text = letters[Math.floor(Math.random() * letters.length)];
+    ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+    if (drops[i] * fontSize > canvas.height && Math.random() > 0.985) {
+      drops[i] = 0;
+    }
+    drops[i] += 0.5;
+  }
+}
+setInterval(draw, 70);
+
+// Utility
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+function getNextMessage() {
+  if (messagePool.length === 0) messagePool = shuffleArray([...moodMessages[currentMood]]);
+  return messagePool.pop();
+}
+
+// Mood Selection
+document.querySelectorAll(".mood-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    currentMood = btn.dataset.mood;
+    currentPalette = palettes[currentMood];
+    messagePool = shuffleArray([...moodMessages[currentMood]]);
+    document.body.style.backgroundColor = currentPalette.bg;
+
+    moodContainer.classList.add("hidden");
+    mainContainer.classList.remove("hidden");
+
+    affirmation.innerText = getNextMessage();
+  });
+});
+
+// Refresh functionality
+refreshBtn.addEventListener("click", () => {
+  affirmation.classList.add("fade-out");
+
+  setTimeout(() => {
+    affirmation.innerText = getNextMessage();
+    document.body.style.backgroundColor = currentPalette.bg;
+    affirmation.classList.remove("fade-out");
+
+    if (!musicPlayed) {
+      bgMusic.currentTime = 37;
+      bgMusic.play();
+      musicPlayed = true;
+    }
+  }, 1000);
+});
+
+window.addEventListener("resize", () => {
+  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+});  "Sometimes it's cloudy and sometimes it's windy, but other times....other time, other times it's the best day",
   "Rest, hydrate, and be gentle with yourself. It's just one of those days ✨",
   "it’s not you, it’s the weather — have something sweet and it'll be better",
   "Even when you feel alone you're not, heck you know my number by heart",
@@ -144,6 +230,7 @@ window.addEventListener("resize", () => {
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
 });
+
 
 
 
