@@ -9,21 +9,26 @@
 <body>
   <canvas id="matrixCanvas"></canvas>
 
-  <!-- Mood Selection -->
+  <!-- 🌸 Mood Selection -->
   <div id="moodContainer" class="center-container">
     <h2 class="center-text">How are you feeling today?</h2>
-    <button class="mood-btn" data-mood="sad"> Feeling Sad</button>
+    <button class="mood-btn" data-mood="sad">Feeling Sad</button>
     <button class="mood-btn" data-mood="overwhelmed">Feeling Overwhelmed</button>
-    <button class="mood-btn" data-mood="confidence"> Confidence Low</button>
-  </div>
- 
-  <!-- Main Affirmation Section -->
-  <div id="mainContainer" class="center-container hidden">
-    <div class="center-text" id="affirmation"></div>
-    <button id="refreshBtn">✨ Refresh ✨</button>
+    <button class="mood-btn" data-mood="confidence">Confidence Low</button>
   </div>
 
+  <!-- 💬 Main Affirmation Section -->
+  <div id="mainContainer" class="center-container hidden">
+    <div class="center-text" id="affirmation"></div>
+    <div class="button-group">
+      <button id="refreshBtn">✨ Refresh ✨</button>
+      <button id="backBtn" class="back-btn">⬅ Back to Moods</button>
+    </div>
+  </div>
+
+  <!-- 🎵 Background Music -->
   <audio id="bgMusic" src="song.mp3" preload="auto"></audio>
+
   <script src="script.js"></script>
 </body>
 </html>
