@@ -75,3 +75,27 @@ button:hover {
     padding: 0.5rem 1rem;
   }
 }
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.back-btn {
+  font-size: 1rem;
+  padding: 0.7rem 1.2rem;
+  border: none;
+  border-radius: 10px;
+  background: #ffd6e7;
+  color: #6a1b4d;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(106, 27, 77, 0.25);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.back-btn:hover {
+  background: #ffc0cb;
+  transform: scale(1.05);
+}
+
