@@ -34,17 +34,19 @@ document.addEventListener("DOMContentLoaded", () => {
       "I know it sucks right now. I know it's a bit of a mess but you're doing great okay, so get up",
     ],
     overwhelmed: [
-      "Breathe. You are doing enough. You *are* enough. 🌪️",
+      "Breathe. You are doing enough. You ARE enough. 🌪️",
       "Take one step. That’s all progress needs right now.",
       "You’re not behind — you’re just taking a detour to peace 🌸",
       "Pause, sip some water, stretch — small calm moments matter 💧",
       "Life is boring, do the thing, have fun, be excited. You'll explain later",
+      "You can't fix everything all at once all the time, breathe. Smell the flowers, they worked really hard to look like you",
     ],
     confidence: [
       "Look at you — existing beautifully and trying again 💖",
       "You're not less. You're the blueprint ✨",
       "Your energy? Unmatchable. Your worth? Non-negotiable 🔥",
       "Don’t shrink. The world needs the version of you that glows 🌟",
+      "The best part about you is you. Remember that",
       "You're beautiful, smokin' hot, fyn shyt and you have a nice butt, look in the mirror, twice in fact and you'll see",
       "The worst decision you can make is not being you. You're too pretty and too amazing to hide her, everything else can be explained",
     ]
@@ -138,3 +140,4 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.width = window.innerWidth;
   });
 });
+
