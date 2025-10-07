@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const moodContainer = document.getElementById("moodContainer");
   const refreshBtn = document.getElementById("refreshBtn");
   const bgMusic = document.getElementById("bgMusic");
+  const backBtn = document.getElementById("backBtn"); // 👈 Added
 
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
@@ -115,12 +116,21 @@ document.addEventListener("DOMContentLoaded", () => {
       affirmation.classList.remove("fade-out");
 
       if (!musicPlayed) {
-        bgMusic.currentTime = 37;
+        bgMusic.currentTime = 38;
         bgMusic.volume = 0.2;
         bgMusic.play();
         musicPlayed = true;
       }
     }, 1000);
+  });
+
+  // ⬅️ Back to moods button
+  backBtn.addEventListener("click", () => {
+    mainContainer.classList.add("hidden");
+    moodContainer.classList.remove("hidden");
+    currentMood = null;
+    currentPalette = null;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
   });
 
   window.addEventListener("resize", () => {
