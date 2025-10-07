@@ -15,41 +15,6 @@ body, html {
   height: 100%;
 }
 
-/* Mood Selection Page */
-.mood-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: #c71585;
-}
-
-.title {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-}
-
-.mood-btn {
-  display: block;
-  margin: 0.7rem auto;
-  padding: 0.8rem 1.5rem;
-  border: none;
-  border-radius: 12px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  background-color: #ffcce7;
-  color: #6a1b4d;
-  box-shadow: 0 3px 8px rgba(106, 27, 77, 0.25);
-  transition: transform 0.2s, background 0.3s;
-}
-
-.mood-btn:hover {
-  transform: scale(1.05);
-  background: #ffb6c1;
-}
-
-/* Main Container */
 .center-container {
   position: absolute;
   top: 50%;
@@ -60,10 +25,10 @@ body, html {
 }
 
 .center-text {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: bold;
   color: #c71585;
-  background: rgba(255, 240, 245, 0.7);
+  background: rgba(255, 240, 245, 0.8);
   padding: 1rem;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(199, 21, 133, 0.25);
@@ -76,7 +41,7 @@ body, html {
   opacity: 0;
 }
 
-#refreshBtn {
+button {
   font-size: 1rem;
   padding: 0.7rem 1.2rem;
   border: none;
@@ -85,10 +50,11 @@ body, html {
   color: #6a1b4d;
   cursor: pointer;
   box-shadow: 0 3px 8px rgba(106, 27, 77, 0.25);
+  margin: 0.5rem;
   transition: background 0.3s ease, transform 0.2s ease;
 }
 
-#refreshBtn:hover {
+button:hover {
   background: #ffb6c1;
   transform: scale(1.05);
 }
@@ -97,13 +63,15 @@ body, html {
   display: none !important;
 }
 
+/* 🌸 Mobile */
 @media (max-width: 600px) {
   .center-text {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    padding: 0.8rem;
   }
 
-  .mood-btn {
-    width: 80%;
+  button {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
   }
 }
-
