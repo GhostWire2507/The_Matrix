@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
     currentMood = null;
     currentPalette = null;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    secretBtn.classList.add("hidden");
+    secretBtn.classList.remove("hidden");
     closeSecretModal();
   });
 
@@ -241,7 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 🎭 Mood selection - show secret button
+  // 🎭 Mood selection - hide secret button when mood is selected
   document.querySelectorAll(".mood-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       currentMood = btn.dataset.mood;
@@ -251,7 +251,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       moodContainer.classList.add("hidden");
       mainContainer.classList.remove("hidden");
-      secretBtn.classList.remove("hidden");
+      secretBtn.classList.add("hidden");
 
       affirmation.innerText = getNextMessage();
     });
