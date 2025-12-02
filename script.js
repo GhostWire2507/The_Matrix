@@ -6,7 +6,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const moodContainer = document.getElementById("moodContainer");
   const refreshBtn = document.getElementById("refreshBtn");
   const bgMusic = document.getElementById("bgMusic");
-  const backBtn = document.getElementById("backBtn"); // 👈 Added
+  const backBtn = document.getElementById("backBtn");
+  const secretBtn = document.getElementById("secretBtn");
+  const secretModal = document.getElementById("secretModal");
+  const secretNote = document.getElementById("secretNote");
+  const secretProgress = document.getElementById("secretProgress");
+  const secretMusic = document.getElementById("secretMusic");
+  const secretCloseBtn = document.querySelector(".secret-close-btn");
+  const secretNextBtn = document.getElementById("secretNextBtn");
+  const secretPrevBtn = document.getElementById("secretPrevBtn");
 
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
@@ -56,6 +64,105 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentPalette = null;
   let messagePool = [];
   let musicPlayed = false;
+  let allNotes = [];
+  let secretNoteSequence = [];
+  let currentNoteIndex = 0;
+  let seenNotes = new Set();
+  let secretMusicPlayed = false;
+
+  let earlyRandomPool = [];
+  let lateRandomPool = [];
+  let orderedLateNotes = [];
+
+  async function loadNotes() {
+    try {
+      const response = await fetch("notes.json");
+      const data = await response.json();
+      allNotes = data.notes;
+      initializeSecretSequence();
+    } catch (error) {
+      console.error("Error loading notes:", error);
+    }
+  }
+
+  function initializeSecretSequence() {
+    const firstNote = allNotes.find(n => n.group === "alwaysFirst");
+    const earlyRandom = allNotes.filter(n => n.group === "earlyRandom");
+    const orderedLate = allNotes.filter(n => n.group === "orderedLate");
+    const lateRandom = allNotes.filter(n => n.group === "lateRandom");
+    const lastNote = allNotes.find(n => n.group === "alwaysLast");
+
+    earlyRandomPool = [...earlyRandom];
+    lateRandomPool = [...lateRandom];
+    orderedLateNotes = orderedLate;
+
+    secretNoteSequence = [firstNote, ...shuffleArray(earlyRandomPool), ...buildLateSequence(), lastNote].filter(Boolean);
+  }
+
+  function buildLateSequence() {
+    const shuffledLateRandom = shuffleArray([...lateRandomPool]);
+    const result = [];
+
+    for (let i = 0; i < Math.max(orderedLateNotes.length, shuffledLateRandom.length); i++) {
+      if (i < orderedLateNotes.length) {
+        result.push(orderedLateNotes[i]);
+      }
+      if (i < shuffledLateRandom.length) {
+        result.push(shuffledLateRandom[i]);
+      }
+    }
+
+    return result;
+  }
+
+  function openSecretModal() {
+    if (secretNoteSequence.length === 0) return;
+    currentNoteIndex = 0;
+    displaySecretNote();
+    secretModal.classList.remove("hidden");
+    startSecretMusic();
+  }
+
+  function displaySecretNote() {
+    if (currentNoteIndex >= secretNoteSequence.length) return;
+
+    const note = secretNoteSequence[currentNoteIndex];
+    secretNote.textContent = note.text;
+    seenNotes.add(note.id);
+    secretProgress.textContent = `${currentNoteIndex + 1} of ${secretNoteSequence.length}`;
+
+    secretPrevBtn.disabled = currentNoteIndex === 0;
+    secretNextBtn.disabled = currentNoteIndex === secretNoteSequence.length - 1;
+  }
+
+  function nextSecretNote() {
+    if (currentNoteIndex < secretNoteSequence.length - 1) {
+      currentNoteIndex++;
+      displaySecretNote();
+    }
+  }
+
+  function prevSecretNote() {
+    if (currentNoteIndex > 0) {
+      currentNoteIndex--;
+      displaySecretNote();
+    }
+  }
+
+  function closeSecretModal() {
+    secretModal.classList.add("hidden");
+    secretMusic.pause();
+    secretMusicPlayed = false;
+  }
+
+  function startSecretMusic() {
+    if (!secretMusicPlayed) {
+      secretMusic.currentTime = 0;
+      secretMusic.volume = 0.2;
+      secretMusic.play();
+      secretMusicPlayed = true;
+    }
+  }
 
   // 🍥 Matrix animation
   function draw() {
@@ -93,20 +200,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return messagePool.pop();
   }
 
-  // 🎭 Mood selection
-  document.querySelectorAll(".mood-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      currentMood = btn.dataset.mood;
-      currentPalette = palettes[currentMood];
-      messagePool = shuffleArray([...moodMessages[currentMood]]);
-      document.body.style.backgroundColor = currentPalette.bg;
-
-      moodContainer.classList.add("hidden");
-      mainContainer.classList.remove("hidden");
-
-      affirmation.innerText = getNextMessage();
-    });
-  });
 
   // 🔄 Refresh button
   refreshBtn.addEventListener("click", () => {
@@ -133,11 +226,42 @@ document.addEventListener("DOMContentLoaded", () => {
     currentMood = null;
     currentPalette = null;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    secretBtn.classList.add("hidden");
+    closeSecretModal();
+  });
+
+  secretBtn.addEventListener("click", openSecretModal);
+  secretCloseBtn.addEventListener("click", closeSecretModal);
+  secretNextBtn.addEventListener("click", nextSecretNote);
+  secretPrevBtn.addEventListener("click", prevSecretNote);
+
+  secretModal.addEventListener("click", (e) => {
+    if (e.target === secretModal) {
+      closeSecretModal();
+    }
+  });
+
+  // 🎭 Mood selection - show secret button
+  document.querySelectorAll(".mood-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      currentMood = btn.dataset.mood;
+      currentPalette = palettes[currentMood];
+      messagePool = shuffleArray([...moodMessages[currentMood]]);
+      document.body.style.backgroundColor = currentPalette.bg;
+
+      moodContainer.classList.add("hidden");
+      mainContainer.classList.remove("hidden");
+      secretBtn.classList.remove("hidden");
+
+      affirmation.innerText = getNextMessage();
+    });
   });
 
   window.addEventListener("resize", () => {
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
   });
+
+  loadNotes();
 });
 

@@ -29,6 +29,25 @@
   <!-- 🎵 Background Music -->
   <audio id="bgMusic" src="song.mp3" preload="auto"></audio>
 
+  <!-- 🤫 Secret Button -->
+  <button id="secretBtn" class="secret-btn hidden">!</button>
+
+  <!-- 💔 Secret Notes Modal -->
+  <div id="secretModal" class="secret-modal hidden">
+    <div class="secret-card">
+      <button class="secret-close-btn">&times;</button>
+      <div class="secret-note" id="secretNote"></div>
+      <div class="secret-progress" id="secretProgress"></div>
+      <div class="secret-button-group">
+        <button id="secretPrevBtn" class="secret-nav-btn">← Previous</button>
+        <button id="secretNextBtn" class="secret-nav-btn">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🎵 Secret Music -->
+  <audio id="secretMusic" src="song2.m4a" preload="auto"></audio>
+
   <script src="script.js"></script>
 </body>
 </html>

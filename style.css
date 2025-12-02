@@ -99,3 +99,177 @@ button:hover {
   transform: scale(1.05);
 }
 
+.secret-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 50%;
+  background: #ffcce7;
+  color: #6a1b4d;
+  border: none;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s ease, transform 0.2s ease, background 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 8px rgba(106, 27, 77, 0.2);
+  z-index: 99;
+}
+
+.secret-btn:hover {
+  opacity: 1;
+  background: #ffb6c1;
+  transform: scale(1.1);
+}
+
+.secret-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 1;
+  animation: fadeIn 0.5s ease;
+}
+
+.secret-modal.hidden {
+  display: none !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.secret-card {
+  position: relative;
+  background: rgba(255, 240, 245, 0.95);
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 8px 24px rgba(199, 21, 133, 0.4);
+  animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.secret-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  font-size: 1.5rem;
+  background: #ffb6c1;
+  color: #6a1b4d;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.secret-close-btn:hover {
+  background: #ffc0cb;
+  transform: scale(1.1);
+}
+
+.secret-note {
+  font-size: 1.6rem;
+  color: #c71585;
+  line-height: 1.6;
+  margin: 2rem 0;
+  text-align: center;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.5s ease;
+}
+
+.secret-progress {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #c71585;
+  opacity: 0.7;
+  margin-bottom: 1.5rem;
+}
+
+.secret-button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.secret-nav-btn {
+  font-size: 1rem;
+  padding: 0.7rem 1.2rem;
+  border: none;
+  border-radius: 10px;
+  background: #ffcce7;
+  color: #6a1b4d;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(106, 27, 77, 0.25);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.secret-nav-btn:hover {
+  background: #ffb6c1;
+  transform: scale(1.05);
+}
+
+.secret-nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@media (max-width: 600px) {
+  .secret-btn {
+    bottom: 1rem;
+    right: 1rem;
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
+  }
+
+  .secret-card {
+    padding: 1.5rem;
+  }
+
+  .secret-note {
+    font-size: 1.2rem;
+    min-height: 100px;
+  }
+
+  .secret-nav-btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
