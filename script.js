@@ -120,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
     currentNoteIndex = 0;
     displaySecretNote();
     secretModal.classList.remove("hidden");
+    bgMusic.pause();
     startSecretMusic();
   }
 
@@ -153,6 +154,9 @@ document.addEventListener("DOMContentLoaded", () => {
     secretModal.classList.add("hidden");
     secretMusic.pause();
     secretMusicPlayed = false;
+    if (currentMood && musicPlayed) {
+      bgMusic.play();
+    }
   }
 
   function startSecretMusic() {
