@@ -253,7 +253,15 @@ document.addEventListener("DOMContentLoaded", () => {
       mainContainer.classList.remove("hidden");
       secretBtn.classList.add("hidden");
 
+      affirmation.classList.remove("fade-out");
       affirmation.innerText = getNextMessage();
+
+      if (!musicPlayed) {
+        bgMusic.currentTime = 38;
+        bgMusic.volume = 0.2;
+        bgMusic.play();
+        musicPlayed = true;
+      }
     });
   });
 
